@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>deliverable.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="deliverable-2">Deliverable 2</h1>
+<hr>
+<h2 id="what-is-virtualization">What is Virtualization?</h2>
+<p><img src="virtualaztion.png" alt="virtualizationpic"><br></p>
+<p><strong>Virtualization:</strong> This is the creation of a computer environment that is not the actual hardware(virtually).This technology lets us create computing services using resources that are traditionally bound to hardware. It is the process of running a virtual instance of a computer system in a layer separate from the actual hardware. e.g  using a virtual machine to run multiple operating systems on the same desktop</p>
+<p>In simple word,
+To construct a virtual (rather than an actual) server, desktop, network, or storage device is called virtualization. IT agility, efficiency, and flexibility can all be improved by virtualization. In addition, virtualization can be utilized to build a remote-accessible virtual desktop.</p>
+<ul>
+<li>
+<p>Virtualization can also be utilized to create a secure remote access VPN. To speed up a single server or establish a high-performance server farm, virtualization can be used.</p>
+</li>
+<li>
+<p>To design a disaster recovery system or move a physical server, virtualization can be used. Virtualization is a physical solution that allows many operating systems to operate on one computer.</p>
+</li>
+<li>
+<p>This reduces excessive server duplication and consolidation, lowers hardware expenses per server, and makes a more efficient workplace for employees. This configuration requires fewer computers, less cooling, and less space in your data centers.</p>
+</li>
+<li>
+<p>Virtualization separates computing resources from the programs that use them. For example, a virtual machine is an emulator that mimics the architecture of a physical computer to run software designed for it. Virtualization can be employed at the hardware, operating system, and application levels.</p>
+</li>
+</ul>
+<h2 id="virtualbox">Virtualbox</h2>
+<p><img src="virtuslboc.png" alt="virtualBoxpic"><br></p>
+<p><strong>Virtualbox</strong> is a free open-source application that lets you run Linux, Windows, or Mac OS X inside another. The host operating system runs the virtual computers. With VirtualBox, you may run and install another operating system on top of your current one.</p>
+<p><strong>Explanation how we can use VirtualBox and download it :</strong></p>
+<ul>
+<li>
+<p>This is handy for testing applications or operating systems without permanently installing them. There are several reasons why someone could want to use this function, including: You need to run an older Windows or Linux application.</p>
+</li>
+<li>
+<p>You use Linux yet want to test, study, or use a Windows app. Installing VirtualBox is simple if you follow the official website's instructions.</p>
+</li>
+<li>
+<p>However, you must have enough storage space to accommodate the virtual computer. Your computer's processor must enable hardware virtualization to run VirtualBox. To build a new virtual machine, click &quot;New&quot; on the main window.</p>
+</li>
+<li>
+<p>This will begin a wizard to configure your new machine. You must name and configure your machine's operating system, as well as its storage and memory. After you've configured your machine, you may load it up and use it just like any other operating system.</p>
+</li>
+</ul>
+<h3 id="creating-a-virtual-machine">Creating a virtual machine</h3>
+<p>server  uses a program called a hypervisor to manage multiple virtual machines that are running at the same time. Virtual machines have virtual hardware, including CPUs, memory, hard drives, and more. Each piece of virtual hardware is mapped to real hardware on the host computer.</p>
+<ol>
+<li>Download and install VirtualBox from the official website https://www.virtualbox.org/</li>
+<li>Once you have VirtualBox running, click the &quot;New&quot; button</li>
+<li>Next you will have to choose which OS you plan on installing (Ubuntu in our case). In the &quot;Name&quot; box, type the name of the OS (ubuntu) you want to install.The wizard will automatically select default settings based on the OS type and version you selected. The memory size depends on your host machine memory size.You can always change the settings as you go through the wizard. Just keep clicking &quot;Continue&quot; and &quot;Create&quot; until you get through the wizard.</li>
+<li>After this start the virtual machine by clicking start, our ubuntu virtual machine starts</li>
+</ol>
+<h2 id="installing-ubuntu-on-virtualbox">Installing Ubuntu on VirtualBox</h2>
+<ol>
+<li>
+<p>Download the version of  Ubuntu ISO file that you want from ubuntu.com, Start your virtualbox</p>
+</li>
+<li>
+<p>Select your new virtual machine and click 'Settings' button.</p>
+</li>
+<li>
+<p>Click on 'Storage' category and then 'Empty' under Controller:IDE. Click &quot;CD/DVD&quot; icon on right hand side and select the ubuntu ISO file to mount. it is a good idea to specify a large number of processors in virtual machine (default value is 1). You can change this number by clicking on 'System' category</p>
+</li>
+<li>
+<p>Select the Ubuntu ISO file to mount. (our ubuntu ISO file which we downloaded)</p>
+</li>
+<li>
+<p>Back to Oracle VM VirtualBox Manager, click on the new Ubuntu virtual machine and hit 'Start' button.</p>
+</li>
+<li>
+<p>Your virtual machine will now load Ubuntu. The operating system may require some setup, but it will be the same setup that would be required if you had installed it on a standard computer</p>
+</li>
+</ol>
+<h3 id="updating-ubuntu">Updating ubuntu</h3>
+<p><img src="update-ubuntu.png" alt="ubuntu-updating-pic"><br></p>
+<p>You should always update your device before installing any new program or if it hasn't been updated in a long. The Ubuntu operating system is continually upgraded and updated by Ubuntu Developers and community members who collaborate to ensure that the installed software runs as smoothly as possible.</p>
+<p>As a result, you must update your software packages on a regular basis to ensure that you have access to all of the newest security fixes as well as new features included in each update</p>
+<p><strong>Explanation how to update Ubuntu:</strong></p>
+<ol>
+<li>
+<p>command:<code>apt-get update</code> - First, you use the update option to resynchronize the package index files.
+<code>apt-get upgrade</code> : Second, you use the upgrade option to install the newest versions of all packages currently installed on the Ubuntu system.</p>
+</li>
+<li>
+<p>via software center:Press the Super key (Windows key) on the keyboard, then search for Ubuntu Software in the GNOME dash. When the icon appears, select it.</p>
+</li>
+</ol>
+<p><strong>click on the Show Applications icon in the bottom left of the desktop and search for Update Manager.</strong></p>
+<p>The application will check for any Ubuntu updates as it launches ,If it does find any, install these first and run Update Manager again if you need to restart your machine.</p>
+<p>Update Manager will open a window to inform you that your computer is up to date. Click on the Settings button to open the main user-interface.Select the tab called Updates, if not already selected. Then set the Notify me of a new Ubuntu version dropdown menu to either For any new version or For long-term support versions, if you want to update to the latest LTS release. You may be asked for your password to make this change
+<strong>Click on Close to be taken back to the update pane and OK to close this.</strong></p>
+<p>We now need to open Update Manager one more time,  this time Update Manager will open up and tell you that a new distribution is available. <strong>Click Upgrade</strong></p>
+<p>After asking for your password, you will be presented with the Release Notes for the release you're about to upgrade to</p>
+<p><strong>Select the Upgrade button to start the initialization process</strong>. A few moments later you'll be asked Do you want to start the upgrade? Press Start Upgrade to start the upgrade process</p>
+<p>The upgrade will now proceed. The Distribution Upgrade pane will track the upgrade process and allow you to monitor progress.Restart the system to complete the upgrade.</p>
+<h3 id="installing-software-in-ubuntu-via">Installing software in Ubuntu via</h3>
+<p><img src="install.png" alt="installing-software-pic"><br></p>
+<ol>
+<li>
+<p>command line :<code>sudo apt install app_name</code></p>
+</li>
+<li>
+<p>software center:<strong>Click the Ubuntu Software icon in the Dock</strong>, or search for Software in the Activities search bar</p>
+</li>
+<li>
+<p>When Ubuntu Software launches, search for an application, or select a category and find an application from the list</p>
+</li>
+<li>
+<p>Select the application that you want to install and click Install.You will be asked to authenticate by entering your password. Once you have done that the installation will begin.</p>
+</li>
+</ol>
+<h2 id="basic-linux-command">Basic Linux command</h2>
+<p><img src="linux-command.png" alt="linux-command-pic"><br></p>
+<p>Most people associate Linux with a difficult operating system that is mainly used by programmers.
+But it's not as awful as it appears.</p>
+<p><strong>Basic commands are:</strong></p>
+<ol>
+<li><strong>pwd</strong></li>
+<li><strong>cd</strong></li>
+<li><strong>ls</strong></li>
+<li><strong>cat</strong></li>
+<li><strong>cp</strong></li>
+<li><strong>mv</strong></li>
+<li><strong>mkdir</strong></li>
+<li><strong>rmdir</strong></li>
+<li><strong>rm</strong></li>
+<li><strong>touch</strong></li>
+<li><strong>sudo</strong></li>
+<li><strong>man</strong></li>
+</ol>
+<h3 id="navigating-the-filesystem">Navigating the filesystem</h3>
+<p><img src="navigatingfile.png" alt="navigating-file-pic"><br></p>
+<ol>
+<li><strong>pwd</strong>- this command shows us where we are in the file system.It stands for Print Working Directory and prints the current directory</li>
+<li><strong>ls</strong>-this gives a list of the files and subdirectories in the directory that we are in at the moment.</li>
+<li><strong>cd</strong>-this is the command for changing directories . cd.. takes us to the previous directory while cd. takes us to the home directory.For other directories,the syntax is cd directorate</li>
+</ol>
+<h3 id="managing-files-and-directories">managing files and directories</h3>
+<p><img src="managing.png" alt="managing-file-pic"><br></p>
+<ol>
+<li>to create a new directory:<strong>mkdir</strong> directoryname-makes a directory called directoryname</li>
+<li>to delete/remove a directory:<strong>rmdir</strong> name- these deletes the name directory</li>
+<li>moving and renaming files or directories:<strong>mv</strong> source destination</li>
+<li>creating files:<strong>touch</strong> creates an empty file</li>
+<li>deleting a file:<strong>rm</strong> filename</li>
+</ol>
+
+</body>
+</html>
